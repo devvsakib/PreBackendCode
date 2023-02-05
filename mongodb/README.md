@@ -63,6 +63,7 @@ db.COLLECTION_NAME.insertMany([
 }
 ])
 ```
+(./images/insertMany.png)
 
 10. Find all rows in Collection
 ```shell
