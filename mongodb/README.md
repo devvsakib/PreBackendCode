@@ -1,7 +1,4 @@
-<p align="center">
-
-# Cheatsheet for MongoDB
-</p>
+# <p align="center">Cheatsheet for MongoDB</p>
 
 
 1. Show All DataBase
@@ -41,6 +38,33 @@ db.COLLECTION_NAME.drop()
 
 8. Insert rows in Collection
 ```shell
-db.COLLECTION_NAME.insert({KEY: "VALUE"})
+db.COLLECTION_NAME.insert({
+    name: "DevvSakib",
+    role: "Frontend Developer",
+    fvstack: "React",
+    tool: "vscode"
+})
 ```
 
+9. Insert multiple rows in Collection
+```shell
+db.COLLECTION_NAME.insertMany([
+    {
+    name: "DevvSakib",
+    role: "Frontend Developer",
+    fvstack: "React",
+    tool: "vscode"
+},
+    {
+    name: "Unknown",
+    role: "Frontend Developer",
+    fvstack: "React",
+    tool: "figma"
+}
+])
+```
+
+10. Find all rows in Collection
+```shell
+db.COLLECTION_NAME.find()
+```
