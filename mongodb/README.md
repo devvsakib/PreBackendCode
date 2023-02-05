@@ -128,7 +128,7 @@ db.content.remove({})
 ```shell
 db.content.update({name: "0xDevvSakib"}, {$inc: {age: 4}})
 ```
-<img src="./img/inceament.png">
+<img src="./img/increament.png">
 
 19. Rename operator
 ```shell
