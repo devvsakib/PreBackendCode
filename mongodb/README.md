@@ -160,3 +160,25 @@ db.content.find({age: {$lt: 30}})
 ```shell
 db.content.find({age: {$gt: 30}})
 ```
+
+
+## Connecting online MongoDB Cluster
+
+1. Create a account in [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Create a new project
+3. Create a new cluster
+4. Create a new database user
+
+<img src="./img/c1.png">
+<img src="./img/c2.png">
+
+### Copy this url and paste it in Compass
+<img src="./img/c3.png">
+
+### Remove the < > from the connection string and replace the password with your password
+<img src="./img/c4.png">
+
+### Here you will see your Database name
+<img src="./img/c5.png">
+
+**DONE! Now you can connect your MongoDB Cluster with Compass**
