@@ -107,3 +107,4 @@ In case if there are no matching row then it will create a new row if you add up
 db.content.update({name: "NotInCollection"}, {$set: {name: "0xDevvSakib"}}. {upsert: true})
 ```
 > {name: "NotInCollection"} is the query and {$set: {name: "0xDevvSakib"}} is the update. {upsert: true} is the option. In case query doesn't match any row then it will create a new row.
+<img src="./img/upsert.png">
