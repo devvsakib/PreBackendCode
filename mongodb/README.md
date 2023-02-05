@@ -1,5 +1,5 @@
 # <p align="center">Cheatsheet for MongoDB</p>
-For better use, create a collection name **content**
+For better use, create a collection name **content** <br>
 In this cheatsheet, ***content*** is a collection name.
 > db.content.drop(); content is collection name
 
