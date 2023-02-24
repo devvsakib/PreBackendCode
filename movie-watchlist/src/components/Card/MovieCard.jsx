@@ -1,46 +1,64 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
-const MovieCard = ({ drama }) => {
+const MovieCard = ({ drama, idx }) => {
+    const [drama1, setDrama] = useState(drama)
+    const [singleDrama, setSingleDrama] = useState('')
+    const [synopsis, setSynopsis] = useState('')
     const [showCast, setShowCast] = useState(true)
+    useEffect(() => {
+        const api = `https://mydramalist-scrape-api.vercel.app/id/${drama.slug}`
+        axios.get(api)
+            .then(data => {
+                setSingleDrama(data.data.data);
+                setSynopsis(data.data.data.synopsis)
+            })
+    }, [drama1])
+
     return (
-        <div className="card flex-col  shadow-lg card-side  p-0 overflow-hidden bg-base-100">
-            <div className="flex flex-col md:flex-row">
-                <img className='w-1/2 h-full' src={`https://mydramalist.com${drama?.poster}`} alt="Movie" />
-                {/* <img className='md:w-1/2 md:h-full' src={`${drama.thumb}`} alt="Movie" /> */}
-                <div className="card-body justify-between py-3 text-left pl-5 md:pl-3 pr-2">
+        <div key={idx} className="card flex-col  shadow-lg card-side  p-0 overflow-hidden bg-base-100" >
+            <div className="grid grid-cols-1 md:grid-cols-2">
+                <img className='w-full h-full' src={singleDrama.poster} alt="Movie" />
+                <div className="card-body justify-between py-2 text-left pl-5 md:pl-3 pr-2">
                     <div>
-                        <h2 className="card-title mb-2">{drama?.title}</h2>
-                        {/* <p>{drama?.synopsis}</p> */}
-                        <p><b>Type: </b>{drama.details?.type}</p>
-                        <p><b>Rating: </b>{drama.rating}</p>
-                        <p><b>Episodes: </b>{drama.details?.episodes}</p>
-                        <p><b>Ranked: </b>{drama.details?.ranked}</p>
-                        <div>
+                        <h2 className="card-title mb-2">{singleDrama?.title}</h2>
+                        <p className="text-sm">{synopsis.length > 50 ? synopsis.slice(0, 70) + "..." : "No Synopsis"}</p>
+                        <p><b className="text-sm">Type: </b>{singleDrama.details?.type}</p>
+                        <p><b className="text-sm">Country: </b>{singleDrama.details?.country}</p>
+                        <p><b className="text-sm">Rating: </b>{singleDrama.rating}</p>
+                        <p><b className="text-sm">Episodes: </b>{singleDrama.details?.episodes}</p>
+                        <p><b className="text-sm">Ranked: </b>{singleDrama.details?.ranked}</p>
+                        <p className="break-words"><b className="text-sm">Genere: </b>
                             {
-                                drama.others?.genres.map(genre => (
-                                    <span>{genre},<br /></span>
+                                singleDrama.others?.genres.map((genre, id)=> (
+                                    <span>{genre}{singleDrama.others?.genres.length-1 !== id ? ", " : ""}</span>
                                 ))
                             }
-                        </div>
+                        </p>
                     </div>
                     <div className="card-actions justify-start">
-                        <button className="px-3 py-2 rounded-md btn-primary">
-                            {/* <a href={`https://mydramalist.com/${drama.slug}`} target="_blank">Watch</a> */}
-                            <a href={drama?.link} target="_blank">Watch</a>
-                        </button>
-                        <button className="px-3 py-2 rounded-md btn-primary">Add</button>
+
                     </div>
                 </div>
             </div>
             <div className="text-left p-3">
-                <button className=" my-2 btn-primary px-4 rounded-md uppercase font-semibold"
-                onClick={()=> setShowCast(!showCast)}>Show Cast</button>
+                <div className="flex gap-5">
+                    {/* SHOW */}
+                    <button className="my-2 btn-primary px-4 rounded-md uppercase font-semibold"
+                        onClick={() => setShowCast(!showCast)}>Show Cast</button>
+                    {/* Watch */}
+                    <button className="my-2 btn-primary px-4 rounded-md uppercase font-semibold">
+                        <a href={singleDrama?.link} target="_blank">Watch</a>
+                    </button>
+                    {/* Add */}
+                    <button className="my-2 btn-primary px-4 rounded-md uppercase font-semibold">Add</button>
+                </div>
                 <div className={`${showCast ? "hidden" : ""} flex gap-5 justify-start flex-col`}>
                     {
-                        drama.casts?.map(cast => (
+                        singleDrama?.casts?.map(cast => (
                             <div className="avatar flex items-center gap-3">
                                 <div className="w-12 rounded-full">
-                                    <img src={`https://mydramalist.com${cast.profile_image}`} />
+                                    <img src={cast.profile_image} />
                                 </div>
                                 <h2><a href={cast.link} target="_blank">{cast.name}</a></h2>
                             </div>
@@ -48,7 +66,8 @@ const MovieCard = ({ drama }) => {
                     }
                 </div>
             </div>
-        </div>
+        </div >
+
     )
 }
 
