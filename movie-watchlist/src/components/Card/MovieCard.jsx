@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-const MovieCard = ({ drama, idx, setDramas }) => {
+const MovieCard = ({ drama, idx, addDrama }) => {
     const [singleDrama, setSingleDrama] = useState('')
     const [synopsis, setSynopsis] = useState('')
     const [showCast, setShowCast] = useState(true)
@@ -52,7 +52,7 @@ const MovieCard = ({ drama, idx, setDramas }) => {
                                     <a href={singleDrama?.link} target="_blank">Watch</a>
                                 </button>
                                 {/* Add */}
-                                <button className="my-2 btn-primary px-4 rounded-md uppercase font-semibold">Add</button>
+                                <button onClick={addDrama} className="my-2 btn-primary px-4 rounded-md uppercase font-semibold">Add</button>
                             </div>
                             <div className={`${showCast ? "hidden" : ""} flex gap-5 justify-start flex-col`}>
                                 {
@@ -69,7 +69,6 @@ const MovieCard = ({ drama, idx, setDramas }) => {
                         </div>
                     </div >
                 ) : undefined
-
     )
 }
 

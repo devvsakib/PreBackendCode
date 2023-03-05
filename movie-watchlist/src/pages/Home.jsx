@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import MovieCard from '../components/Card/MovieCard'
 import Search from '../components/Search/Search'
-import axios from 'axios'
 
 const Home = () => {
     const [dramas, setDramas] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [addDrama, setAddDrama] = useState([])
     const [searchValue, setSearchValue] = useState('')
     const apiUrl = `https://mydramalist-scrape-api.vercel.app/search/q/${searchValue}`
 
@@ -17,6 +18,21 @@ const Home = () => {
             })
             setDramas([])
     }
+
+    const jsn = JSON.parse(localStorage.getItem('drama'))
+    console.log(jsn);
+
+    useEffect(() => {
+        searchDrama()
+    }, [searchValue])
+
+// i want to add a button to add the drama to the watchlist. I have a add button in moviecard component. I want to add movie in a array and store it to localstorage. Write the code please
+const addDramas = () => {
+    setAddDrama([...addDrama, dramas])
+    localStorage.setItem('drama', JSON.stringify(addDrama))
+    
+}
+
 
 
     return (
@@ -34,6 +50,7 @@ const Home = () => {
                                 drama={drama}
                                 key={idx}
                                 setDramas={setDramas}
+                                addDrama={addDramas}
                             /> : "No Drama"
                     ))
                 }
