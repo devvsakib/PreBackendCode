@@ -7,44 +7,60 @@ const Home = () => {
     const [loading, setLoading] = useState(true)
     const [addDrama, setAddDrama] = useState([])
     const [searchValue, setSearchValue] = useState('')
-    const apiUrl = `https://mydramalist-scrape-api.vercel.app/search/q/${searchValue}`
+    const [dramaById, setDramaById] = useState([])
+    const [searchValueId, setSearchValueId] = useState('')
+
+
+    // searchValue ? searchValueId('') : searchValueId(searchValue)
+    useEffect(() => {
+        setSearchValueId('')
+    }, [searchValue])
 
     const searchDrama = () => {
-        console.log(searchValue);
+        setLoading(true)
+        const apiUrl = `https://mydramalist-scrape-api.vercel.app/search/q/${searchValue === '' ? 'goblin' : searchValue}`
         fetch(apiUrl)
             .then(res => res.json())
             .then(data => {
                 setDramas(data.results.dramas)
-            })
-            setDramas([])
-    }
+                setLoading(false)
 
-    const jsn = JSON.parse(localStorage.getItem('drama'))
-    console.log(jsn);
+            })
+        setDramas([])
+    }
 
     useEffect(() => {
         searchDrama()
     }, [searchValue])
 
-// i want to add a button to add the drama to the watchlist. I have a add button in moviecard component. I want to add movie in a array and store it to localstorage. Write the code please
-const addDramas = () => {
-    setAddDrama([...addDrama, dramas])
-    localStorage.setItem('drama', JSON.stringify(addDrama))
-    
-}
+    const addDramas = () => {
+        setAddDrama([...addDrama, dramas])
+        localStorage.setItem('drama', JSON.stringify(addDrama))
 
+    }
 
-
+    const searchById = () => {
+        fetch(`http://localhost:5000/${searchValueId}`)
+            .then(res => res.json())
+            .then(data => {
+                setDramaById(data)
+            })
+    }
     return (
         <div className=''>
             <Search
                 value={searchValue}
                 setSearchValue={setSearchValue}
                 searchDrama={searchDrama}
+                searchById={searchById}
+                setSearchValueId={setSearchValueId}
+                searchValueId={searchValueId}
             />
             <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
-                    dramas.map((drama, idx) => (
+                    loading ? <div className='mx-auto translate-x-20 md:translate-x-[100%]'>
+                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/585d0331234507.564a1d239ac5e.gif" alt="Loading Gif" className='w-1/4' />
+                    </div> : (dramas && !searchValueId ? dramas.map((drama, idx) => (
                         drama.title !== undefined ?
                             <MovieCard
                                 drama={drama}
@@ -52,7 +68,7 @@ const addDramas = () => {
                                 setDramas={setDramas}
                                 addDrama={addDramas}
                             /> : "No Drama"
-                    ))
+                    )) : dramaById && searchValueId ? <h2>{dramaById.name}</h2> : "No Drama")
                 }
             </div>
         </div>
