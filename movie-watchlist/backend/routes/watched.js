@@ -15,12 +15,12 @@ router.get("/", async (req, res) => {
 
 
 router.post("/add", async (req, res) => {
-    const { name, watched, thumbnail, description, id } = req.body
+    const { name, watched, thumbnail, description } = req.body
 
     try {
-        const data = new Watchedlist({ name, thumbnail, description, watched, id })
+        const data = new Watchedlist({ name, thumbnail, description, watched })
         const newMovie = await data.save();
-         res.json(newMovie)
+        res.json(newMovie)
     } catch (error) {
         console.log("Something is wrong. Please try again");
         res.status(401).json(error.message)
@@ -64,14 +64,25 @@ router.delete("/:name", async (req, res) => {
     const movie = await Watchedlist.findOneAndDelete({ name: req.params.name })
     try {
         // delete movie
-        
+
         movie ? res.json(movie) : res.json({ message: "Movie not found" })
-        
+
     } catch (error) {
         res.json({ message: error })
     }
 
 })
 
+router.patch("/update", async (req, res) => {
+    const watched = req.body.watched
+    try {
+        const movie = await Watchedlist.findOneAndUpdate({ name: req.body.name }, { watched: true })
+        const newMovie = await movie.save();
+        res.json(newMovie)
+    } catch (error) {
+        res.json({ message: error })
+    }
+})
+
+
 module.exports = router
-// db.students.createIndex({studentsId : 1}, {unique : true});

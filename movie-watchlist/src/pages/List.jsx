@@ -1,4 +1,4 @@
-import Header from '../components/Header/Header'
+
 import WatchedCard from '../components/Watched/WatchedCard'
 import WatchlistCard from '../components/Watchlist/WatchlistCard'
 
@@ -6,9 +6,7 @@ const List = () => {
 
 
     return (
-        <div className='-mt-10'>
-            <Header />
-            {/* <h1>List</h1> */}
+        <div className=''>
             <div className='grid mt-10 gap-20 justify-between md:grid-cols-2'>
                 <div>
 

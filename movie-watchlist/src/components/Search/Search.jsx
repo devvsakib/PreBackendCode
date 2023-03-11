@@ -4,16 +4,8 @@ const Search = ({ searchValue, setSearchValue, searchDrama, searchById, searchVa
     const path = window.location.pathname.slice(1);
 
     return (
-        <div className="form-control mb-10">
+        <div className="form-control my-10">
             <div className='mx-auto'>
-                <div className='mb-5'>
-                    <h2 className='text-xl font-bold font-mono badge-primary rounded py-1'>KDRAMA Watch <Link to="list"> <span className='indicator btn'>
-                        List
-                        {/* <span className="indicator-item badge badge-secondary">{count > 20 ? count + "+" : count}</span> */}
-                    </span>
-                    </Link>
-                    </h2>
-                </div>
                 <div className="input-group w-auto">
                     <input type="text" placeholder="Search Movie…" className="input input-bordered"
                         value={searchValue}
