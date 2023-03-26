@@ -82,3 +82,52 @@ Base URL: http://localhost:5000 or your custom port
   - #### DELETE /user/:id
 
     - ##### Delete a user by id
+
+- ### Auth
+    
+  - #### POST /auth
+    
+    - ##### Login a user
+        - ##### Request Body
+
+             ```json
+             {
+               "email": "",
+               "password": ""
+             }
+             ```
+
+    
+  - #### POST /auth/register
+    
+    - ##### Register a user
+        - ##### Request Body
+
+             ```json
+             {
+               "name": "",
+               "email": "",
+               "password": ""
+             }
+             ```
+    
+  - #### GET /auth/user
+    
+    - ##### Get user data
+        - ##### Request Header
+
+             ```json
+             {
+               "x-auth-token": ""
+             }
+             ```
+  - #### POST /auth/logout
+    
+    - ##### Logout a user
+        - ##### Request Header
+
+             ```json
+             {
+               "x-auth-token": ""
+             }
+             ```
