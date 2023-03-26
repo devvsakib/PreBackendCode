@@ -53,7 +53,7 @@ You can test the API using Postman or Insomnia or any other API testing tool.
 
 - #### Insomnia
     
-      - ###### Download Insomnia from the [Insomnia](https://insomnia.rest/download/) website
+  - ###### Download Insomnia from the [Insomnia](https://insomnia.rest/download/) website
     
 
 
