@@ -111,16 +111,6 @@ Base URL: http://localhost:5000 or your custom port
              }
              ```
     
-  - #### GET /auth/user
-    
-    - ##### Get user data
-        - ##### Request Header
-
-             ```json
-             {
-               "x-auth-token": ""
-             }
-             ```
   - #### POST /auth/logout
     
     - ##### Logout a user
