@@ -1,10 +1,29 @@
 ## <p align="center">UsersAPI with AUTH</p>
 
-## This is a simple API with authentication
-
 ## This API is made with NodeJS, Express, MongoDB and JWT
 
-## To run this API you need to have NodeJS and MongoDB installed
+#### To run this API you need to have NodeJS and MongoDB installed
+
+### MongoDB - Compass
+You need MongoDB Compass to connect or see the database. Install MongoDB and MongoDB Compass and then run the API.
+
+- #### To install MongoDB go to the [MongoDB](https://www.mongodb.com/try/download/community) website and download the version for your OS
+- #### To install MongoDB Compass go to the [MongoDB Compass](https://www.mongodb.com/products/compass) website and download the version for your OS
+- #### After installing MongoDB and MongoDB Compass, open MongoDB Compass and connect to the database
+
+### Default MongoDB Connection String - localhost
+
+```bash
+mongodb://localhost:27017
+```
+
+add the database name to the connection string
+
+```bash
+mongodb://localhost:27017/users
+```
+
+
 
 ### To install the dependencies run the command:
 
