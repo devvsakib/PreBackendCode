@@ -1,10 +1,10 @@
 ## <p align="center">UsersAPI with AUTH</p>
 
-## <p align="center">This is a simple API with authentication</p>
+## This is a simple API with authentication
 
-## <p align="center">This API is made with NodeJS, Express, MongoDB and JWT</p>
+## This API is made with NodeJS, Express, MongoDB and JWT
 
-## <p align="center">To run this API you need to have NodeJS and MongoDB installed</p>
+## To run this API you need to have NodeJS and MongoDB installed
 
 ### To install the dependencies run the command:
 
