@@ -46,6 +46,8 @@ npm run dev
 
 ## API Routes - Endpoints
 
+Base URL: http://localhost:5000 or your custom port
+
 - ### Users
 
   - #### GET /users
