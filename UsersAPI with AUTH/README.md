@@ -23,9 +23,14 @@ add the database name to the connection string
 mongodb://localhost:27017/users
 ```
 
+### Create a .env file in the root directory and add the following:
 
+```bash
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/users
+```
 
-### To install the dependencies run the command:
+### Install dependencies:
 
 ```bash
 npm install
