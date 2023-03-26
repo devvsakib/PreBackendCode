@@ -44,6 +44,19 @@ npm install
 npm run dev
 ```
 
+### API Testing
+You can test the API using Postman or Insomnia or any other API testing tool.
+
+- #### Postman
+
+  - ###### Download Postman from the [Postman](https://www.postman.com/downloads/) website
+
+- #### Insomnia
+    
+      - ###### Download Insomnia from the [Insomnia](https://insomnia.rest/download/) website
+    
+
+
 ## API Routes - Endpoints
 
 Base URL: http://localhost:5000 or your custom port
