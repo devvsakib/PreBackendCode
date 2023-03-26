@@ -26,18 +26,18 @@ npm run dev
 
     - ##### Get all users
 
-  - #### GET /users/:id
+  - #### GET /user/:id
 
     - ##### Get a user by id
 
-  - #### POST /users
+  - #### POST /user
 
     - ##### Create a user
 
-  - #### PUT /users/:id
+  - #### PUT /user/:id
 
     - ##### Update a user by id
 
-  - #### DELETE /users/:id
+  - #### DELETE /user/:id
 
     - ##### Delete a user by id
