@@ -29,7 +29,7 @@ mongodb://localhost:27017/users
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/users
 ```
-> In case, I added the .env file to this repository, but it is not recommended to do so. So I recommend you to modify the .env file according to your need. You can change port, url whatever you want.
+> In case, I added the .env file to this repository, but it is not recommended to do so. So I recommend you to modify the .env file according to your need. You can change port, url whatever you want. I don't have any sensitive data in this file. It is just for the sake of simplicity.
 
 
 ### Install dependencies:
