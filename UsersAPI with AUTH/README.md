@@ -92,7 +92,7 @@ Base URL: http://localhost:5000 or your custom port
 
              ```json
              {
-               "email": "",
+               "username": "",
                "password": ""
              }
              ```
@@ -106,7 +106,7 @@ Base URL: http://localhost:5000 or your custom port
              ```json
              {
                "name": "",
-               "email": "",
+               "username": "",
                "password": ""
              }
              ```
