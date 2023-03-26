@@ -44,7 +44,7 @@ npm install
 npm run dev
 ```
 
-### API Testing
+### Testing Tools
 You can test the API using Postman or Insomnia or any other API testing tool.
 
 - #### Postman
