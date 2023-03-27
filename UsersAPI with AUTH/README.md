@@ -67,21 +67,21 @@ Base URL: http://localhost:5000 or your custom port
 
     - ##### Get all users
 
-  - #### GET /user/:id
+  - #### GET /user/:username
 
-    - ##### Get a user by id
+    - ##### Get a user by username
 
   - #### POST /user
 
     - ##### Create a user
 
-  - #### PUT /user/:id
+  - #### PUT /user/:username
 
-    - ##### Update a user by id
+    - ##### Update a user by username
 
-  - #### DELETE /user/:id
+  - #### DELETE /user/:username
 
-    - ##### Delete a user by id
+    - ##### Delete a user by username
 
 - ### Auth
     
