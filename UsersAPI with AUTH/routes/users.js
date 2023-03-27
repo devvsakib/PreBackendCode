@@ -19,7 +19,7 @@ router.get("/users", async (req, res) => {
 })
 
 // Create new user
-router.post("/user/:username", async (req, res) => {
+router.get("/user/:username", async (req, res) => {
     const user = req.params
     const findUser = await User.findOne({ username: user.username })
     findUser ? res.json(findUser) : res.json(resJson("not found", 201))
