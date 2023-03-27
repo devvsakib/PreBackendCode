@@ -33,11 +33,32 @@ router.post("/user", async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(user.password, 10);
 
-    const saveUser = await new User({...user, password: hashedPassword})
+    const saveUser = await new User({ ...user, password: hashedPassword })
 
     saveUser.save();
-    res.json(resJson("Registration Success!", 201))    
+    res.json(resJson("Registration Success!", 201))
 
+})
+
+// Login user
+router.post("/auth", async (req, res) => {
+    const user = req.body
+    const findUser = await User.findOne({ username: user.username })
+
+    if (!findUser) {
+        return res.json(resJson("User Not Found", 404))
+    }
+
+    if (!user.password || !user.username) {
+        return res.json(resJson("All field Required", 422))
+    }
+
+    const comparePassword = bcrypt.compareSync(user.password, findUser.password);
+
+    if (!comparePassword) {
+        return res.json(resJson("Password is incorrect", 401))
+    }
+    return res.json(resJson("Password Matched", 200))
 })
 
 // Get a user by username 
