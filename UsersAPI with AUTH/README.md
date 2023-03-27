@@ -20,7 +20,7 @@ mongodb://localhost:27017
 add the database name to the connection string
 
 ```bash
-mongodb://localhost:27017/users
+mongodb://localhost:27017/users-api
 ```
 
 ### Create a .env file in the root directory and add the following:
