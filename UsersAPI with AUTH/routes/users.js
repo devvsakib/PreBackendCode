@@ -61,6 +61,25 @@ router.post("/auth", async (req, res) => {
     return res.json(resJson("Password Matched", 200))
 })
 
+// Update user information
+router.patch("/auth/:username", async (req, res) => {
+    const user = req.body;
+    const { username } = req.params;
+    const findUser = await User.findOne({ username: user.username })
+
+    if (username !== user.username) return res.json(resJson("Username cannot be change", 403))
+
+    if (!findUser) return res.json(resJson("User not found,Please your username", 404))
+
+
+    const updatedUser = await User.updateOne({ username: username }, { ...user });
+    if (updatedUser) {
+        return res.json(resJson("Update Succesfull", 200))
+    }
+    return res.json(resJson("Server Error. Please try again", 200))
+
+})
+
 // Get a user by username 
 router.get("/user/:username", async (req, res) => {
     const user = req.params
