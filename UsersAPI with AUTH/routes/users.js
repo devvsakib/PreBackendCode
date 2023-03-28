@@ -26,7 +26,9 @@ const auth = (req, res, next) => {
     const token = req.headers.x_auth_token
     if (!token) return res.status(401).json(resJson("Please Login First!"))
 
-    jwt.verify(token, "secret-" + req.params.username, err => {
+    // If 
+
+    jwt.verify(token, "secret-" + (req.params.username || req.body.username), err => {
         if (err) return res.status(403).json(resJson("Unauthorized Access Attempted!"))
         next();
     })
@@ -79,7 +81,7 @@ router.post("/auth", async (req, res) => {
     }
 
     // Generate token for login AUTH
-    const token = jwt.sign({ id: findUser._id,  username: findUser.username }, "secret-" + user.username, { expiresIn: "7d" })
+    const token = jwt.sign({ id: findUser._id, username: findUser.username }, "secret-" + user.username, { expiresIn: "7d" })
     // const token = jwt.sign({ id: findUser._id,  username: findUser.username }, "secret", { expiresIn: "7d" })
 
     // Send toking token to client to store in cookies 
@@ -119,6 +121,13 @@ router.delete("/auth/:username", auth, async (req, res) => {
     }
     res.status(500).json(resJson("Server Error, Please try again"))
 })
+
+// Logout user
+router.post("/auth/logout", auth, (req, res) => {
+    const { username } = req.body
+    res.status(200).json(resJson(`Logout Success ${username}`))
+})
+
 
 
 // Get a user by username 
