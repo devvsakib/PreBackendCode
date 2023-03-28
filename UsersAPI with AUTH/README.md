@@ -70,7 +70,7 @@ Base URL: http://localhost:5000 or your custom port
 
 - ### Auth
     
-  - #### POST /auth/:username
+  - #### GET /auth/:username
     
     - ##### Get a user
         - ##### Request Body
