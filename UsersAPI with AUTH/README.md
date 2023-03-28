@@ -75,7 +75,7 @@ Base URL: http://localhost:5000 or your custom port
 
     - ##### Create a user
 
-  - #### PUT /user/:username
+  - #### Patch /user/:username
 
     - ##### Update a user by username
 
