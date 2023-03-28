@@ -71,12 +71,29 @@ router.patch("/auth/:username", async (req, res) => {
 
     if (!findUser) return res.json(resJson("User not found,Please your username", 404))
 
-
     const updatedUser = await User.updateOne({ username: username }, { ...user });
     if (updatedUser) {
         return res.json(resJson("Update Succesfull", 200))
     }
     return res.json(resJson("Server Error. Please try again", 200))
+
+})
+
+// Delete user
+router.delete("/auth/:username", async (req, res) => {
+    const user = req.body;
+    const { username } = req.params;
+    const findUser = await User.findOne({ username: user.username })
+
+    if (!findUser) {
+        return res.json(resJson("User not found", 404))
+    }
+
+    const deleteUser = await User.deleteOne(findUser)
+    if (deleteUser) {
+        return res.json(resJson("User Deleted", 200))
+    }
+
 
 })
 
@@ -86,6 +103,7 @@ router.get("/user/:username", async (req, res) => {
     const findUser = await User.findOne({ username: user.username })
     findUser ? res.json(findUser) : res.json(resJson("not found", 201))
 })
+
 
 
 export default router;
