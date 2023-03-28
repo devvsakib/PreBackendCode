@@ -13,17 +13,34 @@ git clone https://github.com/devvsakib/PreBackendCode.git
 
 ## Usage
 
-Once the repository is cloned, navigate to the directory you want to use or copy the folder and run the following command to install all necessary dependencies:
+To use the backend code in this repository, simply clone or download the repository and copy the relevant files into your own project directory. You can then modify the code as needed to suit your application's requirements. 
 
-```bash
-npm install
-```
-After installing dependencies, you can start the server by running:
 
-```bash
-npm run dev
-```
-This will start the server and you can now use the APIs provided in the code.
+## Features
+
+This repository contains backend code for the following features:
+
+- API development
+- Authentication
+- Database integration
+
+
+## Technologies Used
+
+The following technologies were used in the development of this backend code:
+
+- Node.js
+- Express.js
+- MongoDB
+
+
+## Getting Started
+
+To get started with this repository, you will need to have Node.js and MongoDB installed on your machine. Once you have those installed, follow these steps:
+1. Clone or download the repository to your local machine.
+2. Run `npm install` to install the required dependencies.
+3. Configure the `.env` file with your database connection details and any other required configuration variables.
+4. Run `npm run dev` to start the server.
 
 ## Getting Help
 
@@ -35,6 +52,17 @@ PreBackendCode is a useful repository for developers who want to focus on API de
 
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+Contributions to this repository are welcome. If you would like to contribute, please follow these steps:
+
+-- Fork the repository to your own GitHub account.
+-- Clone the repository to your local machine.
+-- Create a new branch for your changes.
+-- Make your changes and test them thoroughly.
+-- Commit your changes and push them to your forked repository.
+-- Submit a pull request to have your changes reviewed and merged into the main branch.
+
+
+## License
+
+This repository is licensed under the MIT License. You are free to use, modify, and distribute the code as you see fit. See the LICENSE file for more details.
