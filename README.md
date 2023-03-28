@@ -1,6 +1,4 @@
-<!-- Write a full documentation in this reacme.me file. This github repository for JavaScript developer. Im add all backend code to this repository. This repository name is PreBackendCode. Thats mean if anyone want, they can just copy file from here and they dont even need to write a single line of backend code. Mainly focused on API development -->
-
-# PreBackendCode
+# <p align="center">PreBackendCode</p>
 
 PreBackendCode is a JavaScript repository that provides backend functionality for developers who want to focus on API development. It includes all necessary backend code, allowing developers to simply copy files from the repository and avoid writing any backend code themselves. 
 
