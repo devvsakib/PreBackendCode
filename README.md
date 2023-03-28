@@ -65,4 +65,4 @@ Contributions to this repository are welcome. If you would like to contribute, p
 
 ## License
 
-This repository is licensed under the MIT License. You are free to use, modify, and distribute the code as you see fit. See the LICENSE file for more details.
+This repository is licensed under the MIT License. You are free to use, modify, and distribute the code as you see fit. See the `LICENSE` file for more details.
