@@ -75,7 +75,7 @@ router.patch("/auth/:username", async (req, res) => {
     if (updatedUser) {
         return res.json(resJson("Update Succesfull", 200))
     }
-    return res.json(resJson("Server Error. Please try again", 200))
+    return res.json(resJson("Server Error. Please try again", 500))
 
 })
 
@@ -92,6 +92,7 @@ router.delete("/auth/:username", async (req, res) => {
     if (deleteUser) {
         return res.json(resJson("User Deleted", 200))
     }
+    res.json(resJson("Server Error, Please try again", 500))
 
 
 })
