@@ -81,8 +81,8 @@ router.patch("/auth/:username", async (req, res) => {
 
 // Delete user
 router.delete("/auth/:username", async (req, res) => {
-    const user = req.body;
-    const findUser = await User.findOne({ username: user.username })
+    const username = req.params.username;
+    const findUser = await User.findOne({ username })
 
     if (!findUser) {
         return res.json(resJson("User not found", 404))
@@ -93,9 +93,8 @@ router.delete("/auth/:username", async (req, res) => {
         return res.json(resJson("User Deleted", 200))
     }
     res.json(resJson("Server Error, Please try again", 500))
-
-
 })
+
 
 // Get a user by username 
 router.get("/user/:username", async (req, res) => {
