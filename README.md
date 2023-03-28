@@ -55,12 +55,12 @@ PreBackendCode is a useful repository for developers who want to focus on API de
 
 Contributions to this repository are welcome. If you would like to contribute, please follow these steps:
 
--- Fork the repository to your own GitHub account.
--- Clone the repository to your local machine.
--- Create a new branch for your changes.
--- Make your changes and test them thoroughly.
--- Commit your changes and push them to your forked repository.
--- Submit a pull request to have your changes reviewed and merged into the main branch.
+_ Fork the repository to your own GitHub account.
+_ Clone the repository to your local machine.
+_ Create a new branch for your changes.
+_ Make your changes and test them thoroughly.
+_ Commit your changes and push them to your forked repository.
+_ Submit a pull request to have your changes reviewed and merged into the main branch.
 
 
 ## License
