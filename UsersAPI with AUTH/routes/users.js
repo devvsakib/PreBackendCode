@@ -13,6 +13,17 @@ const resJson = (message, code) => {
     return jsn
 }
 
+// Authontication middleware
+const auth = (req, res, next) => {
+    const token = req.headers.x_auth_token
+    if (!token) return res.json(resJson("Please Login First!", 401))
+
+    jwt.verify(token, "secret", err => {
+        if (err) return res.json(resJson("Unauthorized Access Attempted!"), 403)
+        next();
+    })
+}
+
 // Get all users from database
 router.get("/users", async (req, res) => {
     const users = await User.find({})
@@ -61,8 +72,8 @@ router.post("/auth", async (req, res) => {
     return res.json(resJson("Password Matched", 200))
 })
 
-// Update user information
-router.patch("/auth/:username", async (req, res) => {
+// Update user information, auth middleware to check if usr logged in or not
+router.patch("/auth/:username", auth, async (req, res) => {
     const user = req.body;
     const { username } = req.params;
     const findUser = await User.findOne({ username: user.username })
