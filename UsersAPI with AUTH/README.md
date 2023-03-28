@@ -98,6 +98,18 @@ Base URL: http://localhost:5000 or your custom port
                "password": ""
              }
              ```
+
+  - #### POST /auth/:username
+    
+    - ##### Update a user
+        - ##### Request Body
+
+             ```json
+             {
+               "name": "",
+               "username": ""
+             }
+             ```
     
   - #### POST /auth/logout
     
