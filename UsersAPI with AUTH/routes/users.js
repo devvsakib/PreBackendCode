@@ -82,7 +82,6 @@ router.patch("/auth/:username", async (req, res) => {
 // Delete user
 router.delete("/auth/:username", async (req, res) => {
     const user = req.body;
-    const { username } = req.params;
     const findUser = await User.findOne({ username: user.username })
 
     if (!findUser) {
