@@ -67,12 +67,18 @@ Base URL: http://localhost:5000 or your custom port
 
     - ##### Get all users
 
-  - #### GET /user/:username
-
-    - ##### Get a user by username
 
 - ### Auth
     
+  - #### POST /auth/:username
+    
+    - ##### Get a user
+        - ##### Request Body
+
+             ```ternimal
+             url: /auth/devvsakib
+             ```
+
   - #### POST /auth
     
     - ##### Login a user
