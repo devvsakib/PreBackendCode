@@ -71,18 +71,6 @@ Base URL: http://localhost:5000 or your custom port
 
     - ##### Get a user by username
 
-  - #### POST /user
-
-    - ##### Create a user
-
-  - #### Patch /user/:username
-
-    - ##### Update a user by username
-
-  - #### DELETE /user/:username
-
-    - ##### Delete a user by username
-
 - ### Auth
     
   - #### POST /auth

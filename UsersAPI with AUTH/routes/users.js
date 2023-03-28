@@ -38,7 +38,7 @@ router.get("/users", async (req, res) => {
     res.status(200).json(users)
 })
 // Create new user
-router.post("/user", async (req, res) => {
+router.post("/auth/register", async (req, res) => {
     const user = req.body
     const findUser = await User.findOne({ username: user.username })
 
@@ -122,7 +122,7 @@ router.delete("/auth/:username", auth, async (req, res) => {
 
 
 // Get a user by username 
-router.get("/user/:username", async (req, res) => {
+router.get("/auth/:username", auth, async (req, res) => {
     const user = req.params
     const findUser = await User.findOne({ username: user.username })
     findUser ? res.status(200).json(findUser) : res.status(201).json(resJson("not found"))
