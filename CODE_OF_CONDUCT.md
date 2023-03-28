@@ -46,10 +46,10 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 [homepage]: http://contributor-covenant.org
 [version]: http://contributor-covenant.org/version/1/4/
 
-[x]: # Path: CONTRIBUTING.md
-[x]: # Path: SECURITY.md
-[x]: # Path: .github/ISSUE_TEMPLATE/bug_report.md
-[x]: # Path: .github/ISSUE_TEMPLATE/feature_request.md
-[x]: # Path: .github/ISSUE_TEMPLATE/config.yml
-[x]: # Path: .github/PULL_REQUEST_TEMPLATE.md
-[x]: # Path: .github/workflows/main.yml
+#### Path: CONTRIBUTING.md
+#### Path: SECURITY.md
+#### Path: .github/ISSUE_TEMPLATE/bug_report.md
+#### Path: .github/ISSUE_TEMPLATE/feature_request.md
+#### Path: .github/ISSUE_TEMPLATE/config.yml
+#### Path: .github/PULL_REQUEST_TEMPLATE.md
+#### Path: .github/workflows/main.yml
