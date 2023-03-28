@@ -26,8 +26,6 @@ const auth = (req, res, next) => {
     const token = req.headers.x_auth_token
     if (!token) return res.status(401).json(resJson("Please Login First!"))
 
-    // If 
-
     jwt.verify(token, "secret-" + (req.params.username || req.body.username), err => {
         if (err) return res.status(403).json(resJson("Unauthorized Access Attempted!"))
         next();
