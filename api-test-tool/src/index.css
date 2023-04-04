@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #03081A;
+  --secondary-color: #05FF00;
+  --placeholder-color: #D9D9D950;
+  --primary-font: 'Barlow';
+  --transparent-bg: #D9D9D915;
+  --active-transparent-bg: #00000015;
+}
+
+body {
+  background: linear-gradient(192.02deg, #03081A 0%, #030F34 100%);
+  font-family: 'Barlow';
+  color: #fff;
+}
+
+.httpMethodDark {
+  @apply text-white font-bold uppercase;
+}
+
+.httpDarkLight {
+  @apply text-black font-bold;
+}
+
+.httpOptionDark {
+  @apply text-white;
+}
+
+.httpOptionLight {
+  @apply text-black;
+}
