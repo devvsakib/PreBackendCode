@@ -1,0 +1,25 @@
+{
+  "name": "blog-api-mongodb",
+  "version": "0.0.1",
+  "description": "API for blog, Database used MongoDB, Auth JWT",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blogapi",
+    "blog",
+    "jwt",
+    "auth"
+  ],
+  "author": "DevvSakib",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3"
+  }
+}
