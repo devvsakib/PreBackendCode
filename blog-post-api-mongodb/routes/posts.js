@@ -1,15 +1,16 @@
 import express from "express";
 import Post from "../models/Post.js";
-import mongoose from "mongoose";
+import jwt from "jsonwebtoken"
 
 const router = express.Router();
 
-
+// get all blogs
 router.get("/", async (req, res) => {
     const allPosts = await Post.find();
     allPosts.length ? res.status(200).json(allPosts) : res.status(404).json({ message: "No posts found" });
 })
 
+// get single post by id
 router.get("/post/:id", async (req, res) => {
     try {
         const { id } = req.params;
@@ -22,6 +23,7 @@ router.get("/post/:id", async (req, res) => {
     }
 });
 
+// post new blog 
 router.post("/", async (req, res) => {
     const { content } = req.body
     const post = req.body
@@ -44,6 +46,13 @@ router.post("/", async (req, res) => {
     })
 })
 
-
+// Generate token for auth
+// router.get("/auth", async (req, res) => {
+//     const { username } = req.body
+//     const token = jwt.sign({ username: username }, "secrete-" + username, { expiresIn: "2h" });
+//     return res.json({
+//         token: token,
+//     })
+// })
 
 export { router as postRouter }
