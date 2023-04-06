@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import { postRouter } from "./routes/posts.js";
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
@@ -18,6 +19,8 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     )
     .catch(err => console.error(err));
 
+
+app.use("/", postRouter)
 
 app.get("/", (req, res) => res.json({ Message: "Hi, I'm working fine✅" }))
 
