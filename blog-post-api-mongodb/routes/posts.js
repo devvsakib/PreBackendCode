@@ -46,6 +46,56 @@ router.post("/", async (req, res) => {
     })
 })
 
+// edit post, if user authenticated, then edit or show auth required
+router.patch("/post/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const newPost = req.body;
+        const findPost = await Post.findById(id);
+
+        if (findPost) {
+            const updatePost = await Post.updateOne(newPost)
+            if (updatePost) {
+                return res.json({
+                    Msg: "updated"
+                })
+            }
+            else {
+                return res.json({
+                    Msg: "not updated"
+                })
+
+            }
+        }
+    } catch (error) {
+        return res.status(404).json({
+            Message: "Something happend,Please try again!"
+        });
+    }
+})
+
+// delete post, if user authenticated
+router.delete("/post/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const findPost = await Post.deleteOne({ _id: id })
+        
+        if (findPost.deletedCount === 0) {
+            return res.status(404).json({
+                Message: "Post Not Found!"
+            });
+        }
+        return res.status(200).json({
+            Message: "Post Deleted Successfully!"
+        });
+    } catch (error) {
+        return res.status(404).json({
+            Message: "Server issue!"
+        });
+
+    }
+})
+
 // Generate token for auth
 // router.get("/auth", async (req, res) => {
 //     const { username } = req.body
