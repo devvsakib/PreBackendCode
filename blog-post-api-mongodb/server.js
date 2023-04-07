@@ -29,6 +29,6 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 app.use("/", postRouter)
 app.use("/users", userRouter)
 
-app.get("/", (req, res) => res.json({ Message: "Hi, I'm working fine✅" }))
+app.get("/*", (req, res) => res.json({ Message: "Hi, I'm working fine✅" }))
 
 app.listen(PORT, () => console.log(`Server running at ${PORT}`))
