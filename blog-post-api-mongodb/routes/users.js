@@ -28,14 +28,10 @@ router.get("/", async (req, res) => {
     res.json(users);
 })
 
-
 router.get("/:username", async (req, res) => {
     const { username } = req.params
     const findUser = await User.findOne({ username: username }).select("-password")
-    if (!findUser) return res.json({
-        message: "No user found",
-        statusCode: 400
-    })
+    if (!findUser) return res.status(404).json({ message: "No user found" })
 
     res.json(findUser)
 })
@@ -43,48 +39,36 @@ router.get("/:username", async (req, res) => {
 router.post("/register", async (req, res) => {
     const user = req.body
     const findUser = await User.findOne({ username: user.username })
-    if (findUser) return res.json({
-        message: "Username already taken!",
-        statusCode: 400
-    })
+    if (findUser) return res.status(400).json({ message: "Username already taken!" })
 
 
     const hashP = await bcrypt.hash(user.password, 10);
 
     const newUser = await new User({ ...user, password: hashP })
     newUser.save()
-    res.json(
-        {
-            message: "Account Created Successfully!",
-            statusCode: 201
-        }
-    )
+    res.status(201).json({ message: "Account Created Successfully!" })
 })
 
 router.post("/login", async (req, res) => {
     const { password, username } = req.body
     const user = await User.findOne({ username: username })
-    if (!user) return res.json({
-        message: "User doesn't exist!",
-        statusCode: 400
-    })
+    if (!user) return res.status(400).json({ message: "User doesn't exist!" })
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-        return res.json({
+        return res.status(403).json({
             message: "Username or Password not currect!"
         })
     }
 
     const token = jwt.sign({ id: user._id }, "secret");
 
-    res.json(
+    res.status(200).json(
         {
             token,
             userId: user._id,
             username: user.username,
-            message: "Login Successfully!",
-            statusCode: 200
+            message: "Login Successfully!"
         }
     )
 })
@@ -93,11 +77,10 @@ router.patch("/:username", auth, async (req, res) => {
     const user = req.body;
     const { username } = req.params;
     if (user.username !== username) return res.status(400).json({
-        message: "Username can't be changed",
-        statusCode: 400,
+        message: "Username can't be changed"
     });
     try {
-        if(user.password) {
+        if (user.password) {
             const hashP = await bcrypt.hash(user.password, 10);
             user.password = hashP
         }
@@ -108,23 +91,22 @@ router.patch("/:username", auth, async (req, res) => {
         );
 
         if (updatedUser.n === 0) {
-            return res.status(404).json({
-                message: "User not found",
-                statusCode: 404,
-            });
+            return res.status(404).json({ message: "User not found" });
         }
 
-        res.status(200).json({
-            message: "User updated successfully",
-            statusCode: 200,
-        });
+        res.status(200).json({ message: "User updated successfully" });
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
 });
 
-
+router.delete("/:username", async (req, res) => {
+    const { username } = req.params;
+    const user = await User.deleteOne({ username: username })
+    if (!user) return res.status(400).json({ message: "User password not matched!" })
+    else return res.status(200).json({ message: "User deleted!" })
+})
 
 export default auth;
 export { router as userRouter }
