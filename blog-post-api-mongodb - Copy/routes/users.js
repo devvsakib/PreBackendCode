@@ -1,7 +1,8 @@
 import expres from "express";
-import Category from "../models/Category.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import User from "../models/User.js";
+
 
 const router = expres.Router();
 
@@ -24,7 +25,7 @@ const auth = async (req, res, next) => {
 }
 
 router.get("/", async (req, res) => {
-    const users = await User.find().select(["-password", "-email", "-_id"]);
+    const users = await User.find().select(["-password", "-_id"]);
     res.json(users);
 })
 
@@ -38,16 +39,24 @@ router.get("/:username", async (req, res) => {
 
 router.post("/register", async (req, res) => {
     const user = req.body
-    const findUser = await User.findOne({ username: user.username })
-    if (findUser) return res.status(400).json({ message: "Username already taken!" })
+    const findUserByUsername = await User.findOne({ username: user.username });
+    const findUserByPhoneNumber = await User.findOne({ phoneNumber: user.phoneNumber });
 
+    if (findUserByUsername) {
+        return res.status(400).json({ message: "Username already taken!" });
+    }
+
+    if (findUserByPhoneNumber) {
+        return res.status(400).json({ message: "Phone number already taken!" });
+    }
 
     const hashP = await bcrypt.hash(user.password, 10);
 
-    const newUser = await new User({ ...user, password: hashP })
+    const newUser = new User({ ...user, password: hashP })
     newUser.save()
     res.status(201).json({ message: "Account Created Successfully!" })
 })
+
 
 router.post("/login", async (req, res) => {
     const { password, username } = req.body
@@ -61,7 +70,7 @@ router.post("/login", async (req, res) => {
         })
     }
 
-    const token = jwt.sign({ id: user._id }, "secret");
+    const token = jwt.sign({ id: user.type }, "secret");
 
     res.status(200).json(
         {
