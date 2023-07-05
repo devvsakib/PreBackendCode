@@ -89,4 +89,28 @@ router.delete("/:userID", async (req, res) => {
     }
 });
 
+
+// Update user's  Basic Information
+router.patch("/:userID/basic-information", async (req, res) => {
+    try {
+        const updatedInfo = req.body;
+
+        if (!updatedInfo) {
+            return res.status(400).json({ error: "Missing required fields!" });
+        }
+
+        const user = await User.findOne({ userID: req.params.userID });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        user.basicInformation = updatedInfo;
+        await user.save();
+        
+        res.status(200).json(user.basicInformation);
+
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
 export { router as usersRoute }
