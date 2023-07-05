@@ -34,6 +34,11 @@ app.get("/", (req, res) => res.status(200).json({
     statusCode: 200
 }))
 
+
+
+// Users Route
+app.use("/api/users", usersRoute)
+
 // Incorrect route message
 app.get('*', (req, res) => {
     const { method, originalUrl, body } = req;
@@ -48,11 +53,6 @@ app.get('*', (req, res) => {
     };
     res.json(response);
 });
-
-
-// Users Route
-app.use("/api/users", usersRoute)
-
 
 
 app.listen(PORT, () => console.log("Running at port ", PORT))

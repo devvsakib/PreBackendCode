@@ -22,32 +22,53 @@ router.get("/", async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
+//  register user
 router.post("/", async (req, res) => {
     const user = req.body;
     if (!user.password || !user.basicInformation.email) return res.status(400).json({ error: "Missing required fields!" });
     try {
-        const newUser = req.body;
-        const findUser = await User.findOne({ email: newUser.email })
+        const findUser = await User.findOne({ email: user.email })
         if (findUser) return res.status(400).json({ error: "Email already used!" });
 
         // Generate UUID
         const translator = shortUUID('0123456789');
         const shortID = translator.new().slice(0, 6);
-        newUser.userID = shortID;
+        user.userID = shortID;
 
-        // hash password
-        newUser.password = await bcrypt.hash(newUser.password, 10);
+        // hash the password
+        const hashedPassword = await bcrypt.hash(user.password, 10)
 
-        const user = new User(newUser);
-
-        const savedUser = await user.save();
+        const savedUser = await new User({ ...user, password: hashedPassword }).save();
         if (!savedUser) return res.status(400).json({ error: "User not Registered!" });
 
-        res.status(201).json(responseMessage("User created successfully", savedUser.userID));
+        res.status(201).json(responseMessage("User created successfully", savedUser));
 
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+// Get all users
+router.get("/users", async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Get a single user by userID
+router.get("/:userID", async (req, res) => {
+    try {
+        const user = await User.findOne({ userID: req.params.userID });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
