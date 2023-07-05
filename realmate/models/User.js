@@ -25,9 +25,7 @@ const userSchema = new mongoose.Schema({
             required: true,
             unique: true
         },
-        age: {
-            type: Number
-        },
+        age: Number,
         maritalStatus: String,
         religion: String,
         caste: String
