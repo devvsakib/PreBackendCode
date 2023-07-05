@@ -62,11 +62,14 @@ router.get("/users", async (req, res) => {
 // Get a single user by userID
 router.get("/:userID", async (req, res) => {
     try {
-        const user = await User.findOne({ userID: req.params.userID });
+        const user = await User.findOne({ userID: req.params.userID }).select("-password");
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
+        // remove the password from the response
+        const { password, ...data } = user._doc;
         res.json(user);
+
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
