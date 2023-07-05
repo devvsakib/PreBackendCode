@@ -78,7 +78,7 @@ Base URL: http://localhost:5000/api/ or your custom port
     
     - ##### Get a user by ID
 
-             ```ternimal
+             ```bash
              url: /356263
              ```
 
