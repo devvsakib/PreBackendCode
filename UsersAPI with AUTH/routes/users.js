@@ -129,9 +129,9 @@ router.post("/auth/logout", auth, (req, res) => {
 
 
 // Get a user by username 
-router.get("/auth/:username", auth, async (req, res) => {
+router.get("/user/:username",  async (req, res) => {
     const user = req.params
-    const findUser = await User.findOne({ username: user.username })
+    const findUser = await User.findOne({ username: user.username }).select("-password -_id")
     findUser ? res.status(200).json(findUser) : res.status(201).json(resJson("not found"))
 })
 
