@@ -84,7 +84,7 @@ Base URL: http://localhost:5000/api/ or your custom port
 
   - #### POST /auth
     
-    - ##### Login a user
+    - ##### Login a user [not implemented yet]
         - ##### Request Body
 
              ```json
