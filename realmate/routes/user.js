@@ -68,7 +68,7 @@ router.get("/:userID", async (req, res) => {
         }
         // remove the password from the response
         const { password, ...data } = user._doc;
-        res.json(user);
+        res.status(200).json(user);
 
     } catch (error) {
         res.status(500).json({ error: error.message });
