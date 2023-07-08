@@ -186,6 +186,7 @@ router.patch("/:userID/physical-attributes", async (req, res) => {
 });
 
 // Update user's Address
+// Update user's address
 router.patch("/:userID/address", async (req, res) => {
     try {
         const { userID } = req.params;
@@ -195,22 +196,24 @@ router.patch("/:userID/address", async (req, res) => {
             return res.status(400).json({ error: "Missing required fields!" });
         }
 
-        const user = await User.findOneAndUpdate(
-            { userID, "address.addressType": addressType },
-            { $set: { "address.$": updatedAddress } },
-            { new: true }
-        );
+        const user = await User.findOne({ userID: userID });
 
         if (!user) {
-            return res.status(404).json({ error: "User or address not found" });
+            return res.status(404).json({ error: "User not found" });
         }
+        if (addressType === "presentAddress") user.presentAddress = updatedAddress;
+        else user.permanentAddress = updatedAddress;
 
-        res.status(200).json(user.address);
+        await user.save();
+        res.status(200).json(user[addressType]);
 
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });
     }
 });
+
+
+
 
 // Add education information
 router.post("/:userID/education", async (req, res) => {

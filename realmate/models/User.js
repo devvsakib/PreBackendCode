@@ -32,25 +32,19 @@ const userSchema = new mongoose.Schema({
         caste: String
     },
     // done
-    address: [
-        {
-            permanentAddress: {
-                sameAsPresentAddress: Boolean,
-                country: String,
-                state: String,
-                postalCode: String,
-                city: String
-            },
-        },
-        {
-            presentAddress: {
-                country: String,
-                state: String,
-                postalCode: String,
-                city: String
-            }
-        }
-    ],
+    permanentAddress: {
+        sameAsPresentAddress: Boolean,
+        country: String,
+        state: String,
+        postalCode: String,
+        city: String,
+    },
+    presentAddress: {
+        country: String,
+        state: String,
+        postalCode: String,
+        city: String,
+    },
     // done
     education: [
         {
