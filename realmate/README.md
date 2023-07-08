@@ -182,6 +182,21 @@ Base URL: http://localhost:5000/api/ or your custom port
             }
             ```
 
+    - ##### Update /physical-attributes
+        - ##### Request Body
+            
+            ```json
+            {
+              "height": String,
+              "weight": String,
+              "eyeColor": String,
+              "hairColor": String,
+              "complexion": String,
+              "bloodGroup": String,
+              "disability": String
+            },
+            ```
+
     - ##### Update /address
         - ##### Request Body
 

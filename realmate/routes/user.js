@@ -161,8 +161,31 @@ router.patch("/:userID/family-information", async (req, res) => {
     }
 });
 
+// Update user's  Physical Attributes
+router.patch("/:userID/physical-attributes", async (req, res) => {
+    try {
+        const updatedInfo = req.body;
+
+        if (!updatedInfo) {
+            return res.status(400).json({ error: "Missing required fields!" });
+        }
+
+        const user = await User.findOne({ userID: req.params.userID });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        user.physicalAttributes = updatedInfo;
+        await user.save();
+
+        res.status(200).json(user.physicalAttributes);
+
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
 // Update user's Address
-// Update user's address
 router.patch("/:userID/address", async (req, res) => {
     try {
         const { userID } = req.params;
@@ -192,56 +215,56 @@ router.patch("/:userID/address", async (req, res) => {
 // Add education information
 router.post("/:userID/education", async (req, res) => {
     try {
-      const { degree, institution, start, end, status } = req.body;
-      
-      if (!degree || !institution || !start || !end || !status) {
-        return res.status(400).json({ error: "Missing required fields!" });
-      }
-      
-      const user = await User.findOne({ userID: req.params.userID });
-      if (!user) {
-        return res.status(404).json({ error: "User not found" });
-      }
-  
-      user.education.push({ degree, institution, start, end, status });
-      await user.save();
-      
-      res.status(201).json(user.education);
-  
-    } catch (error) {
-      res.status(500).json({ error: "Internal server error" });
-    }
-  });
+        const { degree, institution, start, end, status } = req.body;
 
-  // Update education information
+        if (!degree || !institution || !start || !end || !status) {
+            return res.status(400).json({ error: "Missing required fields!" });
+        }
+
+        const user = await User.findOne({ userID: req.params.userID });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        user.education.push({ degree, institution, start, end, status });
+        await user.save();
+
+        res.status(201).json(user.education);
+
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+// Update education information
 router.patch("/:userID/education/:educationID", async (req, res) => {
     try {
-      const { degree, institution, start, end, status } = req.body;
-      
-      if (!degree || !institution || !start || !end || !status) {
-        return res.status(400).json({ error: "Missing required fields!" });
-      }
-      
-      const user = await User.findOne({ userID: req.params.userID });
-      if (!user) {
-        return res.status(404).json({ error: "User not found" });
-      }
-  
-      const educationIndex = user.education.findIndex(edu => edu._id.toString() === req.params.educationID);
-      if (educationIndex === -1) {
-        return res.status(404).json({ error: "Education not found" });
-      }
-  
-      user.education[educationIndex] = { degree, institution, start, end, status };
-      await user.save();
-      
-      res.status(200).json(user.education);
-  
+        const { degree, institution, start, end, status } = req.body;
+
+        if (!degree || !institution || !start || !end || !status) {
+            return res.status(400).json({ error: "Missing required fields!" });
+        }
+
+        const user = await User.findOne({ userID: req.params.userID });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const educationIndex = user.education.findIndex(edu => edu._id.toString() === req.params.educationID);
+        if (educationIndex === -1) {
+            return res.status(404).json({ error: "Education not found" });
+        }
+
+        user.education[educationIndex] = { degree, institution, start, end, status };
+        await user.save();
+
+        res.status(200).json(user.education);
+
     } catch (error) {
-      res.status(500).json({ error: "Internal server error" });
+        res.status(500).json({ error: "Internal server error" });
     }
-  });
-  
+});
+
 
 
 export { router as usersRoute }
