@@ -78,10 +78,8 @@ Base URL: http://localhost:5000/api/ or your custom port
     
     - ##### Get a user by ID
 
-             ```json
-
+             ```
                 url: /356263
-
              ```
 
   - #### POST /auth
