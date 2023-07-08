@@ -79,7 +79,9 @@ Base URL: http://localhost:5000/api/ or your custom port
     - ##### Get a user by ID
 
              ```bash
-             url: /356263
+
+                url: /356263
+
              ```
 
   - #### POST /auth
