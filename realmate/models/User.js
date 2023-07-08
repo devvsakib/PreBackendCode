@@ -31,13 +31,25 @@ const userSchema = new mongoose.Schema({
         religion: String,
         caste: String
     },
-    presentAddress: {
-        sameAsPermanentAddress: Boolean,
-        country: String,
-        state: String,
-        postalCode: String,
-        city: String
-    },
+    address: [
+        {
+            permanentAddress: {
+                sameAsPresentAddress: Boolean,
+                country: String,
+                state: String,
+                postalCode: String,
+                city: String
+            },
+        },
+        {
+            presentAddress: {
+                country: String,
+                state: String,
+                postalCode: String,
+                city: String
+            }
+        }
+    ],
     education: [
         {
             degree: String,
@@ -69,6 +81,7 @@ const userSchema = new mongoose.Schema({
         motherTongue: String,
         knownLanguages: [String]
     },
+    // done
     familyInformation: {
         father: Boolean,
         mother: Boolean,
@@ -91,13 +104,6 @@ const userSchema = new mongoose.Schema({
         drink: String,
         smoke: String,
         livingWith: String
-    },
-    permanentAddress: {
-        sameAsPresentAddress: Boolean,
-        country: String,
-        state: String,
-        postalCode: String,
-        city: String
     },
     personalAttitude: {
         politicalViews: String,

@@ -105,7 +105,7 @@ router.patch("/:userID/basic-information", async (req, res) => {
 
         user.basicInformation = updatedInfo;
         await user.save();
-        
+
         res.status(200).json(user.basicInformation);
 
     } catch (error) {
@@ -129,7 +129,7 @@ router.patch("/:userID/partner-expectation", async (req, res) => {
 
         user.partnerExpectation = updatedInfo;
         await user.save();
-        
+
         res.status(200).json(user.partnerExpectation);
 
     } catch (error) {
@@ -153,8 +153,36 @@ router.patch("/:userID/family-information", async (req, res) => {
 
         user.familyInformation = updatedInfo;
         await user.save();
-        
+
         res.status(200).json(user.familyInformation);
+
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+// Update user's Address
+// Update user's address
+router.patch("/:userID/address", async (req, res) => {
+    try {
+        const { userID } = req.params;
+        const { addressType, updatedAddress } = req.body;
+
+        if (!addressType || !updatedAddress) {
+            return res.status(400).json({ error: "Missing required fields!" });
+        }
+
+        const user = await User.findOneAndUpdate(
+            { userID, "address.addressType": addressType },
+            { $set: { "address.$": updatedAddress } },
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({ error: "User or address not found" });
+        }
+
+        res.status(200).json(user.address);
 
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });

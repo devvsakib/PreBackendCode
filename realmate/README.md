@@ -181,3 +181,19 @@ Base URL: http://localhost:5000/api/ or your custom port
                 "siblings": Boolean
             }
             ```
+
+    - ##### Update /address
+        - ##### Request Body
+
+            ```json
+            {
+                "addressType": "permanentAddress/presentAddress",
+                "updatedAddress": {
+                  "sameAsPresentAddress": false, // for permanent address only
+                  "country": "United States",
+                  "state": "California",
+                  "postalCode": "12345",
+                  "city": "Los Angeles"
+                }
+            }
+            ```
