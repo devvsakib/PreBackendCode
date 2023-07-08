@@ -149,7 +149,6 @@ Base URL: http://localhost:5000/api/ or your custom port
     - ##### Update /partner-expectation
         - ##### Request Body
 
-
             ```json
             {
                 "generalRequirements": String,
@@ -169,5 +168,16 @@ Base URL: http://localhost:5000/api/ or your custom port
                 "preferredCountry": String,
                 "preferredState": String,
                 "complexion": String
+            }
+            ```
+
+    - ##### Update /family-information
+        - ##### Request Body
+            
+            ```json
+            {
+                "father": Boolean,
+                "mother": Boolean,
+                "siblings": Boolean
             }
             ```
