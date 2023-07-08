@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema({
         religion: String,
         caste: String
     },
+    // done
     address: [
         {
             permanentAddress: {
@@ -50,6 +51,7 @@ const userSchema = new mongoose.Schema({
             }
         }
     ],
+    // done
     education: [
         {
             degree: String,
