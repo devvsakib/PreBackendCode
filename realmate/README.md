@@ -145,3 +145,29 @@ Base URL: http://localhost:5000/api/ or your custom port
                 "caste": "Sunni"
             }
             ```
+
+    - ##### Update /partner-expectation
+        - ##### Request Body
+
+
+            ```json
+            {
+                "generalRequirements": String,
+                "residenceCountry": String,
+                "minHeight": Number,
+                "maxWeight": Number,
+                "maritalStatus": String,
+                "childrenAcceptable": Boolean,
+                "religion": String,
+                "caste": String,
+                "language": String,
+                "education": String,
+                "profession": String,
+                "smokingAcceptable": Boolean,
+                "drinkingAcceptable": Boolean,
+                "dietAcceptable": Boolean,
+                "preferredCountry": String,
+                "preferredState": String,
+                "complexion": String
+            }
+            ```

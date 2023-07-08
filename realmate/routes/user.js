@@ -12,7 +12,6 @@ const responseMessage = (message, data) => {
     }
 }
 
-
 router.get("/", async (req, res) => {
     try {
         const users = await User.find();
@@ -113,4 +112,30 @@ router.patch("/:userID/basic-information", async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
+// Update user's  Partner Expectation
+router.patch("/:userID/partner-expectation", async (req, res) => {
+    try {
+        const updatedInfo = req.body;
+
+        if (!updatedInfo) {
+            return res.status(400).json({ error: "Missing required fields!" });
+        }
+
+        const user = await User.findOne({ userID: req.params.userID });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        user.partnerExpectation = updatedInfo;
+        await user.save();
+        
+        res.status(200).json(user.partnerExpectation);
+
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
+
 export { router as usersRoute }

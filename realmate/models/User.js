@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    // done
     basicInformation: {
         firstName: String,
         lastName: String,
@@ -108,6 +109,7 @@ const userSchema = new mongoose.Schema({
         ethnicity: String,
         familyValue: String
     },
+    // done
     partnerExpectation: {
         generalRequirements: String,
         residenceCountry: String,
